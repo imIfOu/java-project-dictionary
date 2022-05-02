@@ -1,0 +1,7 @@
+rest-template:
+  client:
+    config:
+      user:
+        url: xxxxx
+        connectTimeout: 5000
+        readTimeout: 5000

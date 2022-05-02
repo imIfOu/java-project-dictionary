@@ -1,0 +1,15 @@
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+        errorDecoder: com.github.imifou.client.config.UserClientErrorHandler
+        requestInterceptors:
+          - com.github.imifou.client.config.CorrelationIdRequestInterceptor
+      user:
+        url: xxxxx
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full

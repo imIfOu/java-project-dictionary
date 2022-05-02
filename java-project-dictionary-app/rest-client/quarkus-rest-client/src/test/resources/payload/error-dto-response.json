@@ -1,0 +1,5 @@
+{
+  "code" : "INVALID_USER",
+  "message" : "Invalid user format !",
+  "correlationId": "c9495a10-4c28-4e9d-a912-63f293db5c06"
+}

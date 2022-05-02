@@ -1,0 +1,7 @@
+quarkus:
+  rest-client:
+    user:
+      connectTimeout: 5000
+      readTimeout: 5000
+      scope: javax.inject.Singleton
+      url: xxxxx

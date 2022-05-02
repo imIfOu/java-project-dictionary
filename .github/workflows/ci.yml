@@ -1,0 +1,25 @@
+name: "CI workflow"
+on: [push, pull_request]
+
+jobs:
+  loadLibs:
+    timeout-minutes: 5
+    runs-on: [ self-hosted ]
+    outputs:
+      libs: ${{ steps.libs.output }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: List Librairies modules
+        run: mvn -B package --file pom.xml
+
+  buildLib:
+    timeout-minutes: 10
+    runs-on: [self-hosted]
+    needs: [loadLibs]
+    steps:
+      -

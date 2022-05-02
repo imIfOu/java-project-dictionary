@@ -1,0 +1,5 @@
+rest-template:
+  client:
+    config:
+      user:
+        url: http://localhost:9561
