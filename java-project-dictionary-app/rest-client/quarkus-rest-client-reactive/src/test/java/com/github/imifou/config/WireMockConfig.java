@@ -11,9 +11,9 @@ public class WireMockConfig implements QuarkusTestResourceLifecycleManager  {
 
     @Override
     public Map<String, String> start() {
-        wireMockServer = new WireMockServer(9561);
+        wireMockServer = new WireMockServer();
         wireMockServer.start();
-        return Map.of("quarkus.rest-client.user.url", "http://localhost:9561");
+        return Map.of("quarkus.rest-client.user.url", "http://localhost:" + wireMockServer.port());
     }
 
     @Override
