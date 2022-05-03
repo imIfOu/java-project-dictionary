@@ -11,6 +11,7 @@ import java.util.List;
 @FeignClient(name = "user", url="${feign.client.config.user.url}")
 public interface UserClient {
 
+    
     @RequestMapping(method = RequestMethod.GET, value = "/users")
     List<User> getUsers();
 
