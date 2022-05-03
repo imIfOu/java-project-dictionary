@@ -27,7 +27,6 @@ public interface UserClient {
 
     @POST
     Uni<User> createUser(User user);
-
     @PUT
     @Path("/{id}")
     Uni<User> updateUser(@PathParam("id") Long id, User user);
