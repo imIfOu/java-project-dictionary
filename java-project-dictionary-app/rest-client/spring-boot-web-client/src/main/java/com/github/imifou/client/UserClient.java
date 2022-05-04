@@ -29,7 +29,8 @@ public class UserClient {
     public UserClient(UserClientConfig userClientConfig) {
         this.webClient = buildWebClient(userClientConfig);
     }
-
+    
+    
     private WebClient buildWebClient(final UserClientConfig userClientConfig){
         var httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, (int) userClientConfig.connectionTimeout())
