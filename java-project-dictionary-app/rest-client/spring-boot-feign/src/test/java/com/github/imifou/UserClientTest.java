@@ -34,17 +34,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.util.StreamUtils.copyToString;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @EnableConfigurationProperties
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { WireMockConfig.class })
+@ContextConfiguration(initializers = { WireMockConfig.class })
 @DisplayName("Test user http client")
 public class UserClientTest {
 
     private static final Long USER_ID = 1L;
 
     @Autowired
-    WireMockServer mockUserApi;
+    WireMockServer wireMockServer;
 
     @Autowired
     UserClient userClient;
@@ -55,7 +54,7 @@ public class UserClientTest {
     }
 
     void configureMockServer(String path, int status, String resource) throws IOException {
-        mockUserApi.stubFor(WireMock.get(WireMock.urlEqualTo(path))
+        wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo(path))
                 .willReturn(WireMock.aResponse()
                         .withStatus(status)
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
