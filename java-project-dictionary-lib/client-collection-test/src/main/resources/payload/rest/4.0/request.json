@@ -1,0 +1,9 @@
+{
+  "name" : "Toto",
+  "age" : 15,
+  "birthDate" : "2002-10-05",
+  "authorities" : [
+    { "name" : "ADMIN" },
+    { "name" : "SIMPLE_USER" }
+  ]
+}

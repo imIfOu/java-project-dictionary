@@ -1,0 +1,1 @@
+query users { users {name age birthDate authorities {name}} }

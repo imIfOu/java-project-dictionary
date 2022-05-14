@@ -1,0 +1,16 @@
+{
+  "errors": [
+    {
+      "message": "Not Found",
+      "path": [
+        "createUser"
+      ],
+      "extensions": {
+        "code": "NOT_FOUND"
+      }
+    }
+  ],
+  "data": {
+    "createUser": null
+  }
+}

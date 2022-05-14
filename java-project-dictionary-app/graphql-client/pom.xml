@@ -17,5 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>quarkus-smallrye-graphql-client</module>
+        <module>quarkus-smallrye-graphql-client-reactive</module>
     </modules>
 </project>
