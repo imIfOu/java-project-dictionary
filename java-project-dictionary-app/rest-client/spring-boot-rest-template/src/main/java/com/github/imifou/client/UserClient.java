@@ -1,8 +1,9 @@
 package com.github.imifou.client;
 
-import com.github.imifou.client.config.UserClientErrorHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.imifou.client.config.CorrelationIdRequestInterceptor;
 import com.github.imifou.client.config.UserClientConfig;
+import com.github.imifou.client.config.UserClientErrorHandler;
 import com.github.imifou.data.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 
@@ -25,12 +27,13 @@ public class UserClient {
     private final RestOperations restClient;
 
     @Autowired
-    public UserClient(final UserClientConfig userClientConfig) {
-        this.restClient = buildRestTemplate(userClientConfig);
+    public UserClient(final UserClientConfig userClientConfig, final ObjectMapper objectMapper) {
+        this.restClient = buildRestTemplate(userClientConfig, objectMapper);
     }
 
-    private RestOperations buildRestTemplate(final UserClientConfig userClientConfig){
+    private RestOperations buildRestTemplate(final UserClientConfig userClientConfig, final ObjectMapper objectMapper) {
         var restTemplateBuilder = new RestTemplateBuilder()
+                .messageConverters(new MappingJackson2HttpMessageConverter(objectMapper))
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .setConnectTimeout(Duration.ofMillis(userClientConfig.connectionTimeout()))
@@ -42,7 +45,8 @@ public class UserClient {
     }
 
     public List<User> getUsers() {
-        return restClient.exchange("/users", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {})
+        return restClient.exchange("/users", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+                })
                 .getBody();
     }
 

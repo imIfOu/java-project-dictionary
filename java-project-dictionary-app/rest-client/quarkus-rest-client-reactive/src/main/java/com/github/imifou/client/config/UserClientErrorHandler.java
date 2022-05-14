@@ -24,7 +24,7 @@ public class UserClientErrorHandler implements ResponseExceptionMapper<ClientRes
         var error = getErrorDto(response)
                 .orElse(new ErrorDto(httpStatus.name(), httpStatus.getReasonPhrase(), correlationId));
 
-        return switch (response.getStatus()){
+        return switch (response.getStatus()) {
             case 400 -> new BadRequestResponseException(error);
             case 404 -> new NotFoundResponseException(error);
             default -> new ClientResponseException(error);

@@ -1,0 +1,1 @@
+mutation updateUser($id: BigInteger, $user: UserInput) { updateUser(user: $user) {name age birthDate authorities {name}} }

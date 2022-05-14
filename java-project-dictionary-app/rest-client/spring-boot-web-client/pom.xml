@@ -25,12 +25,6 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

@@ -1,0 +1,4 @@
+quarkus:
+  smallrye-graphql-client:
+    user:
+      url: xxxxx

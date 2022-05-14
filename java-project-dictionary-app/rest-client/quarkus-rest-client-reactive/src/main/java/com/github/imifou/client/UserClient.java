@@ -13,7 +13,7 @@ import java.util.List;
 @Path("/users")
 @Produces("application/json")
 @Consumes("application/json")
-@RegisterRestClient(configKey="user")
+@RegisterRestClient(configKey = "user")
 @RegisterProvider(CorrelationIdRequestInterceptor.class)
 @RegisterProvider(UserClientErrorHandler.class)
 public interface UserClient {

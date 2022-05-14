@@ -1,5 +1,6 @@
 package com.github.imifou.client;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.imifou.client.config.CorrelationIdRequestInterceptor;
 import com.github.imifou.client.config.UserClientConfig;
 import com.github.imifou.client.config.UserClientErrorHandler;
@@ -11,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,16 +30,23 @@ public class UserClient {
     private final WebClient webClient;
 
     @Autowired
-    public UserClient(UserClientConfig userClientConfig) {
-        this.webClient = buildWebClient(userClientConfig);
+    public UserClient(final UserClientConfig userClientConfig, final ObjectMapper objectMapper) {
+        this.webClient = buildWebClient(userClientConfig, objectMapper);
     }
 
-    private WebClient buildWebClient(final UserClientConfig userClientConfig){
+    private WebClient buildWebClient(final UserClientConfig userClientConfig, final ObjectMapper objectMapper) {
         var httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, (int) userClientConfig.connectionTimeout())
                 .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler((int) userClientConfig.readTimeout())));
 
+        var strategies = ExchangeStrategies.builder()
+                .codecs(clientDefaultCodecsConfigurer -> {
+                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(objectMapper, MediaType.APPLICATION_JSON));
+                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(objectMapper, MediaType.APPLICATION_JSON));
+                }).build();
+
         var builder = WebClient.builder()
+                .exchangeStrategies(strategies)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .baseUrl(userClientConfig.url())
@@ -62,7 +73,7 @@ public class UserClient {
 
     public Mono<User> createUser(User user) {
         return webClient.post()
-                .uri("/users/")
+                .uri("/users")
                 .body(BodyInserters.fromValue(user))
                 .retrieve()
                 .bodyToMono(User.class);
