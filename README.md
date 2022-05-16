@@ -22,9 +22,8 @@ Monorepo project that gathers sets of examples implementations of different java
 - [Quarkus SmallRye GraphQL Client](java-project-dictionary-app/graphql-client/quarkus-smallrye-graphql-client) ✅
 - [Quarkus SmallRye GraphQL Client Reactive](java-project-dictionary-app/graphql-client/quarkus-smallrye-graphql-client-reactive)
   ✅
-- Spring Boot GraphQL Webclient 🚧
-- Spring Boot Dgs GraphQL Client 🚧
--
+- [Spring Boot GraphQL Webclient](java-project-dictionary-app/graphql-client/spring-boot-graphql-web-client) ✅
+- [Spring Boot Dgs GraphQL Client]() 🚧
 
 #### Grpc client
 
