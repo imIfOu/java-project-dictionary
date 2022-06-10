@@ -1,0 +1,11 @@
+spring:
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+graphql:
+  client:
+    config:
+      user:
+        url: xxxxx
+        connectTimeout: 5000
+        readTimeout: 5000

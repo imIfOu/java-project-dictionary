@@ -20,5 +20,6 @@
         <module>quarkus-smallrye-graphql-client</module>
         <module>quarkus-smallrye-graphql-client-reactive</module>
         <module>spring-boot-graphql-web-client</module>
+        <module>spring-boot-dgs-graphql-client</module>
     </modules>
 </project>
