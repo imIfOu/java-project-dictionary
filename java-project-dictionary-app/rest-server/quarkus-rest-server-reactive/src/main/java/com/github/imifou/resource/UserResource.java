@@ -45,7 +45,7 @@ public class UserResource {
     @ReactiveTransactional
     public Uni<Response> update(@PathParam("id") Long id, User user) {
         return User.<User>findById(id)
-                .onItem().ifNull().failWith(new NotFoundResponseException())
+                .onItem().ifNull().failWith(new BadRequestResponseException())
                 .invoke(userToUpdate -> {
                     userToUpdate.name = user.name;
                     userToUpdate.age = user.age;

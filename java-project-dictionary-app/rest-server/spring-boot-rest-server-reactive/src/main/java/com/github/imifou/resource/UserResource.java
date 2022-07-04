@@ -48,7 +48,7 @@ public class UserResource {
     @Transactional
     public Mono<ResponseEntity<User>> update(@PathVariable("id") Long id, @RequestBody User user) {
         return userRepository.findById(id)
-                .switchIfEmpty(Mono.error(new NotFoundResponseException()))
+                .switchIfEmpty(Mono.error(new BadRequestResponseException()))
                 .doOnNext(userToUpdate -> {
                     userToUpdate.name = user.name;
                     userToUpdate.age = user.age;

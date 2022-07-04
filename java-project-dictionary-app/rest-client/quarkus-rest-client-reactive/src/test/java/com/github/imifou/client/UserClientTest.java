@@ -8,10 +8,12 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.junit.jupiter.api.Disabled;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Disabled("Regression on MDC management on quarkus 2.10.*")
 @QuarkusTest
 @QuarkusTestResource(WireMockConfig.class)
 public class UserClientTest extends RestClientTest {
