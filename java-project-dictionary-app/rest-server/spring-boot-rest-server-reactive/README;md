@@ -1,0 +1,5 @@
+# Spring boot : rest server reactive ( spring webflux )
+
+## Documentation
+https://spring.io/guides/gs/reactive-rest-service/
+https://spring.io/guides/gs/accessing-data-r2dbc/

@@ -1,0 +1,10 @@
+quarkus:
+  datasource:
+    username: postgres
+    password: postgres
+    db-kind: postgresql
+    jdbc:
+      url: postgresql://localhost:5432/postgres
+  hibernate-orm:
+    database:
+      generation: drop-and-create

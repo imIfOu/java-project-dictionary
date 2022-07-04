@@ -31,6 +31,12 @@ Monorepo project that gathers sets of examples implementations of different java
 
 ### Server
 
-- 🚧
-
-
+#### Rest Server
+- [Quarkus Rest Server](java-project-dictionary-app/rest-server/quarkus-rest-server)
+  ✅
+- [Quarkus Rest Server Reactive](java-project-dictionary-app/rest-server/quarkus-rest-server-reactive)
+  ✅
+- [Spring boot Rest Server](java-project-dictionary-app/rest-server/spring-boot-rest-server)
+  ✅
+- [Spring boot Rest Server Reactive](java-project-dictionary-app/rest-server/spring-boot-rest-server-reactive)
+  ✅

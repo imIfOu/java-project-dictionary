@@ -1,0 +1,15 @@
+spring:
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

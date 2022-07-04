@@ -2,7 +2,6 @@ package com.github.imifou.client;
 
 import com.github.imifou.data.CorrelationId;
 import com.github.imifou.data.User;
-import io.smallrye.graphql.client.typesafe.api.ErrorOr;
 import io.smallrye.graphql.client.typesafe.api.GraphQLClientApi;
 import io.smallrye.graphql.client.typesafe.api.Header;
 import io.smallrye.graphql.client.typesafe.api.NestedParameter;
@@ -20,13 +19,13 @@ public interface UserClient {
     List<User> getUsers();
 
     @Query(value = "user")
-    ErrorOr<User> getUser(@NestedParameter("user") Long id);
+    User getUser(@NestedParameter("user") Long id);
 
     @Mutation
-    ErrorOr<User> createUser(User user);
+    User createUser(User user);
 
     @Mutation
-    ErrorOr<User> updateUser(@NestedParameter("id") Long id, User user);
+    User updateUser(@NestedParameter("id") Long id, User user);
 
     static String setHeaderCorrelationId() {
         return MDC.get(CorrelationId.CORRELATION_ID);
