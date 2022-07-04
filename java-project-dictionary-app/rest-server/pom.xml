@@ -6,8 +6,8 @@
     <modules>
         <module>quarkus-rest-server</module>
         <module>quarkus-rest-server-reactive</module>
-        <module>spring-rest-server</module>
-        <module>spring-rest-server-reactive</module>
+        <module>spring-boot-rest-server</module>
+        <module>spring-boot-rest-server-reactive</module>
     </modules>
 
     <parent>
