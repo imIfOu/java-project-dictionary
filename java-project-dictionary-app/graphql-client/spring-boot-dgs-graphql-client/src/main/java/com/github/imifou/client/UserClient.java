@@ -19,19 +19,14 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-
-import static java.nio.charset.Charset.defaultCharset;
 
 @Slf4j
 @Component
@@ -70,14 +65,6 @@ public class UserClient {
         return MonoGraphQLClient.createWithWebClient(builder.build());
     }
 
-    private static String loadResourceToString(String resourcePath) {
-        try {
-            InputStream inputStream = ResourceUtils.class.getClassLoader().getResourceAsStream(resourcePath);
-            return inputStream != null ? new String(inputStream.readAllBytes(), defaultCharset()) : null;
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
 
     private <T> T extractData(final GraphQLResponse graphQLResponse, final String path, final TypeRef<T> typeRef) {
         if (graphQLResponse.hasErrors()) {
@@ -86,25 +73,24 @@ public class UserClient {
         return graphQLResponse.extractValueAsObject(path, typeRef);
     }
 
-
     public Flux<User> getUsers() {
-        return graphQLClient.reactiveExecuteQuery(loadResourceToString("graphql-queries/get-users.graphql"))
+        return graphQLClient.reactiveExecuteQuery("query users { users {name age birthDate authorities {name}} }")
                 .map(r -> extractData(r, "users", LIST_USER_TYPE_REF))
                 .flatMapIterable(user -> user);
     }
 
     public Mono<User> getUser(final Long id) {
-        return graphQLClient.reactiveExecuteQuery(loadResourceToString("graphql-queries/get-user.graphql"), Map.of("id", id))
+        return graphQLClient.reactiveExecuteQuery("query user($id: BigInteger) { user {name age birthDate authorities {name}} }", Map.of("id", id))
                 .map(r -> extractData(r, "user", USER_TYPE_REF));
     }
 
     public Mono<User> createUser(User user) {
-        return graphQLClient.reactiveExecuteQuery(loadResourceToString("graphql-queries/create-user.graphql"), Map.of("user", user))
+        return graphQLClient.reactiveExecuteQuery("mutation createUser($user: UserInput) { createUser(user: $user) {name age birthDate authorities {name}} }", Map.of("user", user))
                 .map(r -> extractData(r, "user", USER_TYPE_REF));
     }
 
     public Mono<User> updateUser(final Long id, final User user) {
-        return graphQLClient.reactiveExecuteQuery(loadResourceToString("graphql-queries/update-user.graphql"), Map.of("id", id, "user", user))
+        return graphQLClient.reactiveExecuteQuery("mutation updateUser($id: BigInteger, $user: UserInput) { updateUser(user: $user) {name age birthDate authorities {name}} }", Map.of("id", id, "user", user))
                 .map(r -> extractData(r, "user", USER_TYPE_REF));
     }
 }

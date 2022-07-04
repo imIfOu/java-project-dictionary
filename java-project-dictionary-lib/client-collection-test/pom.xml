@@ -13,6 +13,8 @@
 
     <properties>
         <com.github.tomakehurst.wiremock.version>2.27.2</com.github.tomakehurst.wiremock.version>
+        <io.rest-assured.version>5.1.1</io.rest-assured.version>
+        <org.junit.jupiter.junit-jupiter.version>5.8.2</org.junit.jupiter.junit-jupiter.version>
     </properties>
 
     <artifactId>client-collection-test</artifactId>
@@ -25,6 +27,17 @@
             <artifactId>common-data</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${org.junit.jupiter.junit-jupiter.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${io.rest-assured.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.tomakehurst</groupId>

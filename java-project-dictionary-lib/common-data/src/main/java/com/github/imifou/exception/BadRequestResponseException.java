@@ -7,4 +7,7 @@ public class BadRequestResponseException extends ClientResponseException {
     public BadRequestResponseException(ErrorDto error) {
         super(error);
     }
+
+    public BadRequestResponseException() {
+    }
 }

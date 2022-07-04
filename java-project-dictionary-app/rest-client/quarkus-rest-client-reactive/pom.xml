@@ -20,11 +20,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client-reactive-jackson</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.smallrye.reactive</groupId>
-            <artifactId>mutiny-test-utils</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

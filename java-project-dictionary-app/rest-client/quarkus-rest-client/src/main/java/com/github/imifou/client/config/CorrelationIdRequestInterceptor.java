@@ -5,12 +5,11 @@ import org.slf4j.MDC;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
-import java.io.IOException;
 
 public class CorrelationIdRequestInterceptor implements ClientRequestFilter {
 
     @Override
-    public void filter(ClientRequestContext requestContext) throws IOException {
+    public void filter(ClientRequestContext requestContext) {
         requestContext.getHeaders().add(CorrelationId.CORRELATION_ID_HEADER, MDC.get(CorrelationId.CORRELATION_ID));
     }
 }
