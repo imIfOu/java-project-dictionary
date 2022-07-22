@@ -6,17 +6,19 @@
 
     <parent>
         <groupId>com.github.imifou</groupId>
-        <artifactId>java-project-dictionary-app</artifactId>
+        <artifactId>quarkus-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../../java-project-dictionary-parent/quarkus-parent/pom.xml</relativePath>
     </parent>
 
+    <artifactId>quarkus-grpc-client-reactive</artifactId>
     <groupId>com.github.imifou</groupId>
-    <artifactId>grpc-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>quarkus-grpc-client-reactive</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc</artifactId>
+        </dependency>
+    </dependencies>
 </project>

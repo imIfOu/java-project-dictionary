@@ -12,11 +12,11 @@
     </parent>
 
     <groupId>com.github.imifou</groupId>
-    <artifactId>grpc-client</artifactId>
+    <artifactId>grpc-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>quarkus-grpc-client-reactive</module>
+        <module>quarkus-grpc-server-reactive</module>
     </modules>
 </project>
