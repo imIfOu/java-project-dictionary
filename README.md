@@ -27,7 +27,7 @@ Monorepo project that gathers sets of examples implementations of different java
 
 #### Grpc client
 
-- [Quarkus grpc Reactive Client] (java-project-dictionary-app/grpc-client/quarkus-grpc-client-reactive) ✅
+- [Quarkus grpc Reactive Client](java-project-dictionary-app/grpc-client/quarkus-grpc-client-reactive) ✅
 
 ### Server
 
@@ -43,4 +43,4 @@ Monorepo project that gathers sets of examples implementations of different java
 
 #### Grpc Server
 
-- [Quarkus grpc Reactive Server] (java-project-dictionary-app/grpc-server/quarkus-grpc-server-reactive) ✅
+- [Quarkus grpc Reactive Server](java-project-dictionary-app/grpc-server/quarkus-grpc-server-reactive) ✅
