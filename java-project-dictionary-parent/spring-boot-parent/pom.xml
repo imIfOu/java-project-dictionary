@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <spring-boot.version>2.7.1</spring-boot.version>
+        <spring-boot.version>2.7.2</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <com-netflix-graphql-dgs.version>5.0.3</com-netflix-graphql-dgs.version>
         <graphql-webclient-spring-boot-starter.version>1.0.0</graphql-webclient-spring-boot-starter.version>

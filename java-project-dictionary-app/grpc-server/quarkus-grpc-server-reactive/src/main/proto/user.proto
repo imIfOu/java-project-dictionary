@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.imifou.proto";
+option java_outer_classname = "UserProto";
+
+import "google/protobuf/empty.proto";
+package user.proto;
+
+service UserGrpc {
+  rpc ListAll (google.protobuf.Empty) returns (UserListMessage) {}
+  rpc ListById (IdRequest) returns (UserMessage) {}
+  rpc Create (UserMessage) returns (UserMessage) {}
+  rpc UpdateById (UserMessage) returns (UserMessage) {}
+  rpc DeleteById (IdRequest) returns (google.protobuf.Empty) {}
+}
+
+message IdRequest {
+  int64 id = 1;
+}
+
+message UserMessage {
+  optional int64 id = 1;
+  string name = 2;
+  int32  age = 3;
+  string birthDate = 4;
+
+  message AuthorityMessage {
+    optional int64 id = 1;
+    string name = 2;
+  }
+
+  repeated AuthorityMessage authorities = 5;
+}
+
+message UserListMessage {
+  repeated UserMessage users = 1;
+}
